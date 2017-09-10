@@ -1,0 +1,11 @@
+{
+  "solution": {
+    "name": "react-redux-todo-client-side-solution",
+    "id": "0a6c43c6-d924-4945-be1d-98f9bd8036e7",
+    "version": "1.0.0.0",
+    "skipFeatureDeployment": false
+  },
+  "paths": {
+    "zippedPackage": "solution/react-redux-todo.sppkg"
+  }
+}
