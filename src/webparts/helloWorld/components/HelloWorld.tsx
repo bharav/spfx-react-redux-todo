@@ -1,25 +1,42 @@
 import * as React from 'react';
 import styles from './HelloWorld.module.scss';
-import { IHelloWorldProps } from './IHelloWorldProps';
 import { escape } from '@microsoft/sp-lodash-subset';
+import { Todo } from '../model/Todo';
+import {IToDoProps} from './IHelloWorldProps';
 
-export default class HelloWorld extends React.Component<IHelloWorldProps, void> {
-  public render(): React.ReactElement<IHelloWorldProps> {
-    return (
-      <div className={styles.helloWorld}>
-        <div className={styles.container}>
-          <div className={`ms-Grid-row ms-bgColor-themeDark ms-fontColor-white ${styles.row}`}>
-            <div className="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
-              <span className="ms-font-xl ms-fontColor-white">Welcome to SharePoint!</span>
-              <p className="ms-font-l ms-fontColor-white">Customize SharePoint experiences using Web Parts.</p>
-              <p className="ms-font-l ms-fontColor-white">{escape(this.props.description)}</p>
-              <a href="https://aka.ms/spfx" className={styles.button}>
-                <span className={styles.label}>Learn more</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+
+
+export class HelloWorld extends React.Component<IToDoProps, {}> {
+
+  /*public static propTypes = {
+    
+    getTodos: React.PropTypes.func.isRequired,
+    Todos: React.PropTypes.arrayOf(
+      React.PropTypes.instanceOf(Todo)
+    ).isRequired
+  }*/
+
+  public static defaultProps = {
+    Todos: []
+  };
+
+  public render() {
+    return <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {this.props.Todos.map(item => <tr key={item.Title}>
+          <td>{item.Title}</td>
+          <td>{item.Description}</td>
+        </tr>)}
+      </tbody>
+    </table>;
+  }
+  private componentDidMount() {
+    this.props.getTodos();
   }
 }

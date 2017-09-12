@@ -26,8 +26,8 @@ export const getTodos = () => {
         dispatch(createGetToItemRequestAction());
         return pnp.sp.web.lists.get()
             .then(r => r.json())
-            .then((todoItems: Todo[]) => {
-                dispatch(createGetToDoneAction(todoItems.map((todo: Todo) => {
+            .then((Todos: Todo[]) => {
+                dispatch(createGetToDoneAction(Todos.map((todo: Todo) => {
                     const t = new Todo();
                     t.Title = todo.Title;
                     t.Description = todo.Description;

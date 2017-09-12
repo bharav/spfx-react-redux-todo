@@ -10,17 +10,19 @@ import {
 import * as strings from 'helloWorldStrings';
 import HelloWorld from './components/HelloWorld';
 import { IHelloWorldProps } from './components/IHelloWorldProps';
+import { Provider } from 'react-redux';
+import {appStore} from './store/store';
+import {ToDoContainer} from './container/TodoContainer';
 import { IHelloWorldWebPartProps } from './IHelloWorldWebPartProps';
 
 export default class HelloWorldWebPart extends BaseClientSideWebPart<IHelloWorldWebPartProps> {
 
   public render(): void {
-    const element: React.ReactElement<IHelloWorldProps > = React.createElement(
-      HelloWorld,
-      {
-        description: this.properties.description
-      }
-    );
+    const element =
+     <Provider store={appStore}>
+        <ToDoContainer />
+      </Provider>
+    ;
 
     ReactDom.render(element, this.domElement);
   }
